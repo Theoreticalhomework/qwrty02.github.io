@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Heart's Day 💖</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background: linear-gradient(to bottom, #ffc0cb, #ff99cc);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-family: 'Comic Sans MS', cursive;
+    overflow:hidden;
+}
+
+/* Envelope */
+.envelope{
+    position:relative;
+    width:300px;
+    height:200px;
+    background:#ff4d88;
+    cursor:pointer;
+    transition:0.6s;
+}
+
+.envelope:before{
+    content:'';
+    position:absolute;
+    top:-100px;
+    left:0;
+    width:0;
+    height:0;
+    border-left:150px solid transparent;
+    border-right:150px solid transparent;
+    border-bottom:100px solid #ff4d88;
+    transition:0.6s;
+}
+
+.envelope.open:before{
+    transform:rotateX(180deg);
+    transform-origin:top;
+}
+
+.inside-img{
+    position:absolute;
+    width:220px;
+    top:20px;
+    left:40px;
+    opacity:0;
+    transition:0.6s;
+    border-radius:10px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+.envelope.open .inside-img{
+    opacity:1;
+    top:-180px;
+}
+
+/* Twinkle stars */
+.star{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+    0%,100%{opacity:0.2; transform:scale(1);}
+    50%{opacity:1; transform:scale(1.8);}
+}
+
+h1{
+    margin-top:40px;
+    color:white;
+    font-size:40px;
+    text-shadow:2px 2px 10px rgba(0,0,0,0.3);
+}
+</style>
+</head>
+
+<body>
+
+<div class="envelope" onclick="openEnvelope()" id="env">
+    <img src="inside.jpg" class="inside-img">
+</div>
+
+<h1>HAPPY HEART'S DAY SHAI 💖</h1>
+
+<script>
+function openEnvelope(){
+    document.getElementById("env").classList.toggle("open");
+}
+
+/* Twinkle Effect */
+function createStar(){
+    const star=document.createElement("div");
+    star.classList.add("star");
+    star.style.left=Math.random()*window.innerWidth+"px";
+    star.style.top=Math.random()*window.innerHeight+"px";
+    star.style.animationDuration=(Math.random()*2+1)+"s";
+    document.body.appendChild(star);
+
+    setTimeout(()=>{star.remove();},2000);
+}
+
+setInterval(createStar,120);
+</script>
+
+</body>
+</html>
